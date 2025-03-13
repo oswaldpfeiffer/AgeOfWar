@@ -1014,7 +1014,7 @@ PrefabInstance:
     - target: {fileID: 698189960263008994, guid: 7c5316804dbdac34b83cc4b984ae49a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 698189960263008994, guid: 7c5316804dbdac34b83cc4b984ae49a3,
         type: 3}
@@ -1065,6 +1065,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Castle_Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 2307163759094638842, guid: 7c5316804dbdac34b83cc4b984ae49a3,
+        type: 3}
+      propertyPath: Side
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3280548781172182603, guid: 7c5316804dbdac34b83cc4b984ae49a3,
         type: 3}
@@ -1425,6 +1430,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1938613144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1938613146}
+  - component: {fileID: 1938613145}
+  m_Layer: 0
+  m_Name: SpatialGrid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1938613145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938613144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f281b19650d0f8b4dac9e738d839aaf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridWidth: 100
+  GridDepth: 8
+  CellSize: 2
+--- !u!4 &1938613146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938613144}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1992919014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,7 +1638,7 @@ PrefabInstance:
     - target: {fileID: 698189960263008994, guid: 7c5316804dbdac34b83cc4b984ae49a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.5
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 698189960263008994, guid: 7c5316804dbdac34b83cc4b984ae49a3,
         type: 3}
@@ -2455,6 +2507,7 @@ SceneRoots:
   - {fileID: 638584022713718513}
   - {fileID: 7556685781390171102}
   - {fileID: 4973244353623193565}
+  - {fileID: 1938613146}
   - {fileID: 689150195}
   - {fileID: 980059250}
   - {fileID: 244696352}

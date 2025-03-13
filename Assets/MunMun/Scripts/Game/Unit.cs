@@ -12,23 +12,72 @@ public class Unit : MonoBehaviour
     public ESide Side;
     public int Price;
 
-    [SerializeField] private Rigidbody _rb;
+    public Transform _target;
+    private SpatialGrid _grid;
+
+    public float AvoidanceRadius = 0.01f; // Rayon d'évitement des unités alliées
+    public float RepulsionStrength = 0.01f; // Force de répulsion
+
 
     //TEMP
+    public float ATTACKRANGE = 0.2f;
     private float SPEED = 0.4f;
 
-    void Start()
+    private void Start()
     {
-        
+        _grid = SpatialGrid.Instance;
     }
 
     void Update()
     {
-        Move();
+        if (_target != null)
+        {
+            float distance = Vector3.Distance(transform.position, _target.position);
+
+            if (distance > ATTACKRANGE)
+            {
+                // Avancer vers la cible
+                transform.position = Vector3.MoveTowards(transform.position, _target.position, SPEED * Time.deltaTime);
+                ApplySeparationForce();
+            }
+            else
+            {
+                // Effectuer une attaque (on pourra ajouter un système d'attaque ici plus tard)
+            }
+        }
     }
 
-    private void Move()
+    private void ApplySeparationForce()
     {
-        _rb.MovePosition(transform.position + new Vector3(Side == ESide.left ? 1 : -1, 0, 0) * Time.deltaTime * SPEED);
+        var nearbyUnits = _grid.GetNearbyUnits(transform.position, ATTACKRANGE * 2f);
+
+        Vector3 separationForce = Vector3.zero;
+
+        foreach (var unit in nearbyUnits)
+        {
+            if (unit == this) continue;
+
+            Vector3 diff = transform.position - unit.transform.position;
+            float distance = diff.magnitude;
+
+            if (distance < AvoidanceRadius)
+            {
+                if (distance > 0)
+                {
+                    separationForce += diff.normalized / Mathf.Clamp(distance, 0.1f,1f);
+                } else
+                {
+                    separationForce += new Vector3(Random.Range(-1, 1), 0, Random.Range(-1, 1));
+                }
+            }
+        }
+        separationForce *= RepulsionStrength;
+        if (separationForce.magnitude > 0) Debug.Log(separationForce);
+        transform.position += separationForce * Time.deltaTime;
+    }
+
+    public void SetTarget(Transform target)
+    {
+        _target = target;
     }
 }
