@@ -16,7 +16,7 @@ public class Unit : MonoBehaviour
     private SpatialGrid _grid;
 
     public float AvoidanceRadius = 0.01f; // Rayon d'évitement des unités alliées
-    public float RepulsionStrength = 0.01f; // Force de répulsion
+    public float RepulsionStrength = 0.0001f; // Force de répulsion
 
 
     //TEMP
@@ -62,9 +62,10 @@ public class Unit : MonoBehaviour
 
             if (distance < AvoidanceRadius)
             {
-                if (distance > 0)
+                Debug.Log(distance);
+                if (distance > 0.05f)
                 {
-                    separationForce += diff.normalized / Mathf.Clamp(distance, 0.1f,1f);
+                    separationForce += diff.normalized;
                 } else
                 {
                     separationForce += new Vector3(Random.Range(-1, 1), 0, Random.Range(-1, 1));
@@ -72,7 +73,6 @@ public class Unit : MonoBehaviour
             }
         }
         separationForce *= RepulsionStrength;
-        if (separationForce.magnitude > 0) Debug.Log(separationForce);
         transform.position += separationForce * Time.deltaTime;
     }
 
