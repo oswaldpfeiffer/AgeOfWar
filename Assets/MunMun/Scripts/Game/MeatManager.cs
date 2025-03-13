@@ -13,7 +13,7 @@ public class MeatManager : MonoBehaviour
     private float _counter = 0;
 
     // DEBUG
-    private float MEATDELAY = 4f;
+    private float MEATDELAY = 1f;
 
     void Start()
     {
